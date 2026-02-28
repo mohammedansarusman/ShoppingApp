@@ -15,12 +15,12 @@ const carouselImages = [
 ];
 export const CarouselItems = () => {
   return (
-    <Carousel className="w-7/8 h-60 sm:h-80 md:h-105 lg:h-110 xl:h-120 flex justify-center items-center mt-10">
+    <Carousel className="w-7/8 h-60 sm:h-80 md:h-90 lg:h-95 xl:h-100 flex justify-center items-center mt-10">
       <CarouselContent className="">
         {carouselImages.map((item, index) => (
           <CarouselItem
             key={index}
-            className="w-full full flex justify-center items-center md:h-105 lg:h-110 xl:h-120"
+            className="w-full full flex justify-center items-center md:h-90 lg:h-95 xl:h-100"
           >
             <Image
               src={`/${item}`}

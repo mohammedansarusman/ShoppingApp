@@ -6,7 +6,7 @@ import { MobileNavigationBar } from "./MobileNavigationBar";
 import { NavBarIcon } from "./NavBarIcon";
 export const NavigationBar = () => {
   return (
-    <div className="w-full h-20 pt-5 flex items-center justify-between px-4 text-gray-600 bg-white fixed lg:justify-around">
+    <div className="w-full h-20 pt-5 flex items-center justify-between px-4 text-gray-600 bg-white/30 backdrop-blur-md fixed z-30 lg:justify-around">
       {/* Hamburger menu  & logo*/}
       <aside className="flex items-center gap-8 md:gap-20 lg:gap-40">
         {/* Menu icon */}
