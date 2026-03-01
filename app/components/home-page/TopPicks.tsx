@@ -10,6 +10,7 @@ export const TopPicks = async () => {
   });
   const data = await response.json();
   const { products } = data;
+  console.log("products=>",data)
 
   return (
     <div className="w-full flex flex-col px-8 mt-6">
