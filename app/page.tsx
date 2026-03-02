@@ -8,7 +8,7 @@ export default function Home() {
       {/* Carousel */}
       <CarouselItems/>
       {/* Top picks */}
-      <TopPicks/>
+        <TopPicks/>
       {/* shop by category */}
       {/* limited stocks */}
       {/* Recently viewed */}
