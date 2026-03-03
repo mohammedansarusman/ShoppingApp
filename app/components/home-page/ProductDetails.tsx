@@ -9,7 +9,7 @@ type ProductDetailsProps = {
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
   return (
     <div className="w-50 h-full shrink-0 text-gray-600 flex flex-col gap-1">
-      <div className="w-50 h-60 border border-gray-200 rounded-xl relative">
+      <div className="w-50 h-50 border border-gray-200 rounded-xl relative">
         {/* Product Image */}
         <Image
           src={product.thumbnail}
