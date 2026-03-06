@@ -5,7 +5,7 @@ import Link from "next/link";
 
 
 export const TopPicks = async () => {
-  const response = await fetch(`${URL}?sortBy=rating&order=desc&limit=10`, {
+  const response = await fetch(`${URL}?sortBy=rating&limit=10&order=desc`, {
     next: { revalidate: 1800 },
   });
   const data = await response.json();
@@ -16,7 +16,7 @@ export const TopPicks = async () => {
     <div className="w-full flex flex-col px-8 mt-6">
       <div className="w-full flex items-center justify-between">
         <h2 className="text-xl text-gray-600 font-semibold">
-          Our Top Picks
+          Products
         </h2>
         <Link href={"/top-picks"}>
           <h2 className=" text-gray-600 text-sm underline cursor-pointer">
