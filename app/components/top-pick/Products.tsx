@@ -13,25 +13,32 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export const Products = () => {
   const [page, setPage] = useState(1);
   const productsPerPage = 30;
   const firstPage = 1;
   const secondPage = 2;
+  const searchParams = useSearchParams();
+  const pathName = usePathname();
+  const sortBy = searchParams.get('sortBy') || 'rating'
+  const order = searchParams.get('order') || 'desc'
+  
 
-  const fetchTopPicks = async (page: number) => {
+
+  const fetchTopPicks = async (page: number, sortBy: string, order: string) => {
     const skip = (page - 1) * productsPerPage;
     const response = await axios.get(
-      `${URL}?limit=${productsPerPage}&skip=${skip}&sortBy=rating&order=desc`,
+      `${URL}?limit=${productsPerPage}&skip=${skip}&sortBy=${sortBy}&order=${order}`,
     );
     console.log("console in top picks",response.data)
     return response.data;
   };
 
   const { error, data, isLoading } = useQuery({
-    queryKey: ["products", page],
-    queryFn: () => fetchTopPicks(page),
+    queryKey: ["products", page, sortBy, order],
+    queryFn: () => fetchTopPicks(page, sortBy, order),
   });
   if (isLoading) return <p>Loading...</p>;
   if (!data) return null;

@@ -24,9 +24,9 @@ export const SortButton = () => {
         >
           <SheetTitle></SheetTitle>
           <div className="w-full h-full flex flex-col items-center gap-5  px-5">
-            <MenuItemsContainer caption="Price: Low to High" order = "asc"/>
-            <MenuItemsContainer caption="Price: High to Low" order = "desc"/>
-            <MenuItemsContainer caption="Most Popular" order = "popular"/>
+            <MenuItemsContainer caption="Price: Low to High" sortBy = 'price' order = "asc" sortkey = "priceasc"/>
+            <MenuItemsContainer caption="Price: High to Low" sortBy = 'price' order = "desc" sortkey = "pricedesc"/>
+            <MenuItemsContainer caption="Most Popular" sortBy = 'rating' order = "desc" sortkey = "highestrated"/>
           </div>
         </SheetContent>
       </Sheet>
