@@ -6,6 +6,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { CustomButton } from "../general/CustomButton";
 import { MenuItemsContainer } from "../general/MenuItemsContainer";
@@ -27,6 +28,9 @@ export const SortButton = () => {
             <MenuItemsContainer caption="Price: Low to High" sortBy = 'price' order = "asc" sortkey = "priceasc"/>
             <MenuItemsContainer caption="Price: High to Low" sortBy = 'price' order = "desc" sortkey = "pricedesc"/>
             <MenuItemsContainer caption="Most Popular" sortBy = 'rating' order = "desc" sortkey = "highestrated"/>
+            <SheetClose asChild>
+              <button className="w-full h-15 border border-gray-400 hover:bg-gray-100 transition-colors duration-200">Close</button>
+            </SheetClose>
           </div>
         </SheetContent>
       </Sheet>

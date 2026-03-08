@@ -21,7 +21,8 @@ export const MenuItemsContainer = ({ caption, sortBy, order, sortkey }: MenuProp
   };
   return (
     <div
-      className="w-full h-15 rounded-full border border-gray-400 flex justify-start items-center pl-4 gap-2"
+      className="w-full h-15 rounded-full border border-gray-400 flex justify-start items-center pl-4 gap-2 
+      hover:bg-gray-100 transition-all duration-300"
       onClick={() => handleClick(order)}
     >
       <div
