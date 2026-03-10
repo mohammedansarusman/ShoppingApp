@@ -15,10 +15,11 @@ export const SearchBox = () => {
   const pathname = usePathname();
 
   const query: string | null = searchParams.get("query");
-  console.log("Query from URL: ", query);
+  
+  // console.log("Query from URL: ", query);
   // Fetch search results based on the query parameter
-  const products = useSearchItems(query);
-  console.log("Search Results: ", products);
+  const {products, isLoading, error} = useSearchItems(query);
+  console.log("products in searchBox: ", products);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -30,16 +31,25 @@ export const SearchBox = () => {
     setSearchTerm(e.target.value);
   };
   useEffect(() => {
+    console.log("useEffect triggered");
     const timeOut = setTimeout(() => {
       const params = new URLSearchParams(searchParams);
       params.set("query", searchTerm);
-      router.push(`${pathname}/?${params.toString()}`);      
+      router.replace(`${pathname}/?${params.toString()}`);      
 
     },500)
     return ()=>{
       clearTimeout(timeOut);
     }
   }, [searchTerm]);
+  useEffect(() => {
+  if (query) {
+    setSearchTerm(query);
+  }else{
+    router.push(`${pathname}`);
+
+  }
+}, [query]);
 
   return (
     <>
@@ -68,6 +78,8 @@ export const SearchBox = () => {
           <SearchIcon color="white" />
         </button>
       </form>
+      {isLoading && <p className="mt-4 text-center">Loading...</p>}
+      {error && <p className="mt-4 text-center">Error: {String(error)}</p>}
       {products && (
         <div className="w-full px-4 ">
           <h1 className="mt-4">Suggested Products</h1>

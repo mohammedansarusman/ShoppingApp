@@ -2,24 +2,32 @@
 import { useEffect, useState } from "react";
 import { URL } from "../utils/constants";
 import axios from "axios";
-type SearchItemProps = {
+import { useQuery } from "@tanstack/react-query";
+type QueryProps = {
   title: string;
   description: string;
   id: number;
   thumbnail: string;
-} 
+};
 
+export const useSearchItems = (
+  query: string | null,
+): { products: QueryProps[]; isLoading: boolean; error: unknown } => {
+  const fetchSearchResults = async () => {
+    const response = await axios.get(`${URL}/search?q=${query}`);
+    return response.data.products;
+  };
 
-export const useSearchItems = (searchTerm: string|null): SearchItemProps[] | null => {
-  const [data, setData] = useState<SearchItemProps[]>([]);
-  useEffect(() => {
-    const fetchSearchResults = async () => {
-      const response = await axios.get(`${URL}/search?q=${searchTerm}`);
-      setData(response.data.products);
-    };
-    fetchSearchResults();
-  }, [searchTerm]);
-  if(!searchTerm) return [];
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["searchResults", query],
+    queryFn: fetchSearchResults,
+    enabled: !!query, // Only run the query if there is a query string
+    staleTime: 5 * 60 * 1000, // Cache results for 5 minutes
+  });
 
-  return data;
+  return {
+    products: data ?? [],
+    isLoading,
+    error,
+  };
 };
