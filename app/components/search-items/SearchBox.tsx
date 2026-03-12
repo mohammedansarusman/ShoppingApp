@@ -6,6 +6,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSearchItems } from "@/app/hooks/useSearchItems";
 import Image from "next/image";
 import { SearchShimmer } from "./SearchShimmer";
+import { PreviousSearches } from "./PreviousSearches";
+
 
 export const SearchBox = () => {
   const [focus, setFocus] = useState(false); // to track focus state of the search input
@@ -33,16 +35,25 @@ export const SearchBox = () => {
       if (flag) {
         return;
       } else {
+        
         searches = [...JSON.parse(existing), searchTerm];
+        if(searches.length>5){
+          const slicedSearches = [...searches].slice(-5)
+          searches = [...slicedSearches];
+        }
       }
     } else {
       searches.push(searchTerm);
     }
     localStorage.setItem("search", JSON.stringify(searches));
+
+
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(e.target.value);
   };
+
+  
   useEffect(() => {
     const timeOut = setTimeout(() => {
       const params = new URLSearchParams(searchParams);
@@ -84,12 +95,15 @@ export const SearchBox = () => {
         <button
           className="w-12 h-full bg-pink-600 rounded-r-md flex items-center justify-center cursor-pointer"
           type="submit"
+          onClick={()=>router.push(`${pathname}/products/`)}
         >
           <SearchIcon color="white" />
         </button>
       </form>
       {isLoading && <SearchShimmer />}
       {error && <p className="mt-4 text-center">Error: {String(error)}</p>}
+      {/* previous searches */}
+      {!isLoading && <PreviousSearches/>}
       {products.length > 0 && (
         <div className="w-full px-4 ">
           <h1 className="mt-4">Suggested Products</h1>
