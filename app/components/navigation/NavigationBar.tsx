@@ -1,16 +1,19 @@
 // parent component is page.tsx
+'use client'
 import { Heart, ShoppingCart, UserCircle } from "lucide-react";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MobileNavigationBar } from "./MobileNavigationBar";
 import { NavBarIcon } from "./NavBarIcon";
+import { SearchFeature } from "./SearchFeature";
 export const NavigationBar = () => {
+  
   return (
     <div
       className="w-full h-20 pt-5 flex items-center justify-between px-4 text-gray-600 
     bg-white/30 backdrop-blur-md fixed z-30 lg:justify-around top-0
-    border-b border-gray-300"
+      border-b border-gray-300"
     >
       {/* Hamburger menu  & logo*/}
       <aside className="flex items-center gap-8 md:gap-20 lg:gap-40">
@@ -28,10 +31,7 @@ export const NavigationBar = () => {
 
         {/* search bar open when screen become medium width */}
         <aside className="hidden md:w-60 lg:w-100 xl:w-130 md:h-12 md:flex items-center rounded-md">
-          <div className="w-3/4 h-full border-l border-t border-b border-gray-300 rounded-l-md"></div>
-          <div className="w-12 h-full bg-pink-600 rounded-r-md flex items-center justify-center">
-            <SearchIcon color="white" />
-          </div>
+          <SearchFeature />
         </aside>
       </aside>
 

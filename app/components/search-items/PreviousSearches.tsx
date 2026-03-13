@@ -11,10 +11,10 @@ export const PreviousSearches = () => {
 
   const handleClearAll = ()=>{
     setData([])
-    localStorage.setItem('search',"");
+    localStorage.removeItem("search")
   }
   const handleCloseButton=(index: number): void=>{
-    const filteredData = data.filter((item: string[],i: number)=>index!==i)
+    const filteredData = data.filter((item: string,i: number)=>index!==i)
     setData(filteredData);
     localStorage.setItem('search',JSON.stringify(filteredData));
 

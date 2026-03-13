@@ -1,18 +1,19 @@
 "use client";
-import { useEffect, useState } from "react";
 import { URL } from "../utils/constants";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+
 type QueryProps = {
   title: string;
   description: string;
   id: number;
   thumbnail: string;
+  discountPercentage: number;
+  brand: string;
+  price: number;
 };
 
-export const useSearchItems = (
-  query: string | null,
-): { products: QueryProps[]; isLoading: boolean; error: unknown } => {
+export const useSearchItems = (query: string | null): { products: QueryProps[]; isLoading: boolean; error: unknown } => {
   const fetchSearchResults = async () => {
     const response = await axios.get(`${URL}/search?q=${query}`);
     return response.data.products;

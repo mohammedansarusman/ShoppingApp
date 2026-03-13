@@ -7,16 +7,17 @@ type ProductDetailsProps = {
 };
 
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
+  console.log("product testing", product);
   return (
     <div className="w-50 h-full shrink-0 text-gray-600 flex flex-col gap-1">
       <div className="w-50 h-50 border border-gray-200 rounded-xl relative">
         {/* Product Image */}
         <Image
-          src={product.thumbnail}
+          src={product?.thumbnail}
           alt="item-pic"
           width={1000}
           height={1000}
-          className="w-full h-full "
+          className="w-full h-full hover:scale-105 transition-all duration-300 "
         />
         <div
           className="absolute top-0 w-20 bg-pink-600 h-5 
@@ -26,7 +27,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
         </div>
       </div>
       <p className="font-light text-sm">
-        {product?.brand ? product.brand : product?.title}
+        {product?.brand ? product?.brand : product?.title}
       </p>
       <p className="font-semibold text-sm truncate">{product?.title}</p>
       {/* discounted price and actual price */}
