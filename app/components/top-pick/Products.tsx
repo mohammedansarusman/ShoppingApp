@@ -14,6 +14,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export const Products = () => {
   const [page, setPage] = useState(1);
@@ -52,7 +53,9 @@ export const Products = () => {
       <h1 className="text-xl font-bold text-gray-600 pl-10 mt-5">Top Picks</h1>
       <div className="py-10 justify-center flex flex-wrap gap-5 px-2">
         {data?.products.map((item) => (
-          <ProductDetails product={item} key={item?.id} />
+          <Link key={item?.id} href={`/product/${item.id}`}>
+            <ProductDetails product={item}  />
+          </Link>
         ))}
         {/* Pagination */}
         <Pagination className="mt-10">

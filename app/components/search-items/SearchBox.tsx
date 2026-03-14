@@ -24,7 +24,7 @@ export const SearchBox = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    if(!searchTerm || !query) return
+    if (!searchTerm || !query) return;
     let searches: string[] = [];
     const existing = localStorage.getItem("search");
     if (existing) {
@@ -50,9 +50,9 @@ export const SearchBox = () => {
     setSearchTerm(e.target.value);
   };
   // Click search button
-  const handleSearchButton = (): void =>{
-    (searchTerm || query ) && router.push(`${pathname}/products?query=${query}`)
-  }
+  const handleSearchButton = (): void => {
+    (searchTerm || query) && router.push(`${pathname}/products?query=${query}`);
+  };
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
@@ -71,11 +71,11 @@ export const SearchBox = () => {
   return (
     <>
       <form
-        className="w-full h-12 flex justify-center rounded-md md:hidden"
+        className="w-full h-12 flex justify-center rounded-md"
         onSubmit={handleSubmit}
       >
         <div
-          className={`w-3/4 h-full border-l border-t border-b ${focus ? "border-pink-500" : "border-gray-300"} 
+          className={`w-3/4 md:w-1/2 lg:w-1/3 h-full border-l border-t border-b ${focus ? "border-pink-500" : "border-gray-300"} 
           rounded-l-md flex items-center px-2`}
         >
           <input
@@ -99,17 +99,19 @@ export const SearchBox = () => {
 
       {isLoading && <SearchShimmer />}
       {error && <p className="mt-4 text-center">Error: {String(error)}</p>}
-      {/* previous searches */}
-      {!isLoading && <PreviousSearches />}
-      {products.length > 0 && (
-        <div className="w-full px-4 ">
-          <h1 className="mt-4">Suggested Products</h1>
-          {products.map((item) => (
-            // display product image, title and description 
-            <SearchProducts key = {item.id} item = {item}/>
-          ))}
-        </div>
-      )}
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:px-6">
+        {/* previous searches */}
+        {!isLoading && <PreviousSearches />}
+        {products.length > 0 && ( 
+          <div className="w-full px-4 ">
+            <h1 className="mt-4">Suggested Products</h1>
+            {products.map((item) => (
+              // display product image, title and description
+              <SearchProducts key={item.id} item={item} />
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 };

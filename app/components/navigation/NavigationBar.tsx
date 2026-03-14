@@ -30,9 +30,9 @@ export const NavigationBar = () => {
         </Link>
 
         {/* search bar open when screen become medium width */}
-        <aside className="hidden md:w-60 lg:w-100 xl:w-130 md:h-12 md:flex items-center rounded-md">
+        {/* <aside className="hidden md:w-60 lg:w-100 xl:w-130 md:h-12 md:flex items-center rounded-md">
           <SearchFeature />
-        </aside>
+        </aside> */}
       </aside>
 
       {/* Search - Account  - Saved -  Basket or cart icon */}
@@ -42,7 +42,7 @@ export const NavigationBar = () => {
           <NavBarIcon
             iconName="Search"
             iconImage={SearchIcon}
-            className="md:hidden flex flex-col items-center "
+            className="flex flex-col items-center "
           />
         </Link>
 

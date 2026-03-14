@@ -1,4 +1,5 @@
 import { DisplaySearchProducts } from "@/app/components/search-items/DisplaySearchProducts";
+
 export default async function SearchProducts({
   searchParams,
 }: {
@@ -7,7 +8,7 @@ export default async function SearchProducts({
   const { query } = await searchParams;
   return (
     <div className="w-full h-screen bg-white pt-20">
-      <h1>Producs</h1>
+      <h1>Products</h1>
       <DisplaySearchProducts query={query} />
     </div>
   );

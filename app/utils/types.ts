@@ -9,3 +9,8 @@ export type ProductType = {
 export type ProductCardProps = {
   products: ProductType[];
 };
+export type SingleProductProps = {
+  params: {
+    productId: string;
+  };
+};

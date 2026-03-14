@@ -8,7 +8,7 @@ export const DisplaySearchProducts = ({ query }: { query: string }) => {
   console.log("products=>", products);
 
   return (
-    <div className="py-10 justify-center flex flex-wrap gap-5 px-2">
+    <div className="pt-20 justify-center flex flex-wrap gap-5 px-2">
       {products.map((item) => (
         <ProductDetails product={item} key={item?.id} />
       ))}

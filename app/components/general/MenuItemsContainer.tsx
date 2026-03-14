@@ -10,7 +10,7 @@ export const MenuItemsContainer = ({ caption, sortBy, order, sortkey }: MenuProp
   const router = useRouter();
   const pathName: string = usePathname();
   const searchParams = useSearchParams();
-  const selected: string | null = searchParams.get("sortkey");
+  const selected: string | null = searchParams.get("sortkey") || "highestrated";
 
   const handleClick = (order: string) => {
     const params = new URLSearchParams(searchParams);

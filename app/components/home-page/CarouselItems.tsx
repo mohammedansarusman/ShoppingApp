@@ -20,7 +20,7 @@ export const CarouselItems = () => {
         {carouselImages.map((item, index) => (
           <CarouselItem
             key={index}
-            className="w-full full flex justify-center items-center md:h-90 lg:h-95 xl:h-100"
+            className="w-full h-60 flex justify-center items-center sm:h-80 md:h-90 lg:h-95 xl:h-100"
           >
             <Image
               src={`/${item}`}
