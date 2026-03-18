@@ -7,6 +7,7 @@ import { useSearchItems } from "@/app/hooks/useSearchItems";
 import { SearchShimmer } from "./SearchShimmer";
 import { PreviousSearches } from "./PreviousSearches";
 import { SearchProducts } from "./SearchProducts";
+import Link from "next/link";
 
 export const SearchBox = () => {
   const [focus, setFocus] = useState(false); // to track focus state of the search input
@@ -51,7 +52,7 @@ export const SearchBox = () => {
   };
   // Click search button
   const handleSearchButton = (): void => {
-    (searchTerm || query) && router.push(`${pathname}/products?query=${query}`);
+    (searchTerm || query) && router.push(`${pathname}/products?query=${searchTerm}`);
   };
 
   useEffect(() => {
@@ -107,7 +108,9 @@ export const SearchBox = () => {
             <h1 className="mt-4">Suggested Products</h1>
             {products.map((item) => (
               // display product image, title and description
-              <SearchProducts key={item.id} item={item} />
+              <Link href={`/product/${item.id}`} key={item?.id}>
+                <SearchProducts item={item} />
+              </Link>
             ))}
           </div>
         )}

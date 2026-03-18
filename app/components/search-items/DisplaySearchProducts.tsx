@@ -2,6 +2,8 @@
 import React from "react";
 import { useSearchItems } from "@/app/hooks/useSearchItems";
 import { ProductDetails } from "../home-page/ProductDetails";
+import Link from "next/link";
+
 
 export const DisplaySearchProducts = ({ query }: { query: string }) => {
   const { products, error, isLoading } = useSearchItems(query);
@@ -10,7 +12,9 @@ export const DisplaySearchProducts = ({ query }: { query: string }) => {
   return (
     <div className="pt-20 justify-center flex flex-wrap gap-5 px-2">
       {products.map((item) => (
-        <ProductDetails product={item} key={item?.id} />
+        <Link href={`/product/${item.id}`} key={item?.id}>
+          <ProductDetails product={item}/>
+        </Link>
       ))}
     </div>
   );
