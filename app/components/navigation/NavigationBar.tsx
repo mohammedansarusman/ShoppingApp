@@ -7,6 +7,8 @@ import Link from "next/link";
 import { MobileNavigationBar } from "./MobileNavigationBar";
 import { NavBarIcon } from "./NavBarIcon";
 import { SearchFeature } from "./SearchFeature";
+import { useSelector } from "react-redux";
+
 export const NavigationBar = () => {
   
   return (
