@@ -1,5 +1,6 @@
 import { CarouselItems } from "./components/home-page/CarouselItems";
 import { TopPicks } from "./components/home-page/TopPicks";
+import { RecentlyViewed } from "./components/top-pick/RecentlyViewed";
 
 // import { NavigationBar } from "./components/navigation/NavigationBar";
 export default function Home() {
@@ -8,10 +9,11 @@ export default function Home() {
       {/* Carousel */}
       <CarouselItems/>
       {/* Top picks */}
-        <TopPicks/>
+      <TopPicks/>
+      {/* Recently viewed */}
+      <RecentlyViewed />
       {/* shop by category */}
       {/* limited stocks */}
-      {/* Recently viewed */}
 
 
     </div>

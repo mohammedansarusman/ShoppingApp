@@ -25,8 +25,8 @@ export const CarouselItems = () => {
             <Image
               src={`/${item}`}
               alt={`carousel${index}`}
-              width={1000}
-              height={1000}
+              width={1200}
+              height={600}
               className="w-full h-full object-fill rounded-lg"
             />
           </CarouselItem>

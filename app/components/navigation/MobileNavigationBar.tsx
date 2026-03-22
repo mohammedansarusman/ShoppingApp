@@ -17,11 +17,14 @@ export const MobileNavigationBar = () => {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <NavBarIcon
+          <button>
+            <NavBarIcon
             iconName="Menu"
             iconImage={MenuIcon}
             className="lg:hidden flex flex-col items-center "
           />
+          </button>
+          
         </SheetTrigger>
         <SheetContent
           side="left"
