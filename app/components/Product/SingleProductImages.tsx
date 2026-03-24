@@ -43,6 +43,7 @@ export const SingleProductImages = ({ image }: ImageProps) => {
                 width={1000}
                 height={1000}
                 className="min-w-full h-full object-contain"
+                loading="eager"
               />
             </div>
           ))}

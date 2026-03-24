@@ -6,11 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { MobileNavigationBar } from "./MobileNavigationBar";
 import { NavBarIcon } from "./NavBarIcon";
-import { SearchFeature } from "./SearchFeature";
-import { useSelector } from "react-redux";
 
 export const NavigationBar = () => {
-  
   return (
     <div
       className="w-full h-20 pt-5 flex items-center justify-between px-4 text-gray-600 
@@ -47,7 +44,6 @@ export const NavigationBar = () => {
             className="flex flex-col items-center "
           />
         </Link>
-
         {/* User */}
         <NavBarIcon
           iconName="Account"
@@ -61,11 +57,14 @@ export const NavigationBar = () => {
           className="flex flex-col items-center "
         />
         {/* Basket/Cart Icon */}
-        <NavBarIcon
+        <Link href={"/basket"}>
+          <NavBarIcon
           iconName="Cart"
           iconImage={ShoppingCart}
           className="flex flex-col items-center "
         />
+        </Link>
+        
       </aside>
     </div>
   );
