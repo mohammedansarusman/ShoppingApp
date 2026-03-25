@@ -22,5 +22,6 @@ export type CartItem = {
   id? : number;
   price: number;
   discountPercentage: number;
- rating?: number;  
+  thumbnail?:string;
+  rating?: number;  
 }
