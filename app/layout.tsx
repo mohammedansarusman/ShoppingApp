@@ -4,6 +4,7 @@ import "./globals.css";
 import { NavigationBar } from "./components/navigation/NavigationBar";
 import { ProviderTanStack } from "./components/general/ProviderTanStack";
 import { ProviderRedux } from "./components/general/ProviderRedux";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const geistSans = Geist({
@@ -35,6 +36,7 @@ export default function RootLayout({
           <ProviderTanStack>
             <NavigationBar/>
             {children}
+            <Toaster/>
         </ProviderTanStack>
       </ProviderRedux>  
       

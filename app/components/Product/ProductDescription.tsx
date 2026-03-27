@@ -33,7 +33,9 @@ export const ProductDescription = ({ description }: DetailsProps) => {
         </p>
       </div>
       {/* rating */}
-      <Rating rating={rating} />
+      <div className="pl-2">
+        <Rating rating={rating} />
+      </div>
       <div className="flex justify-between items-center px-2 py-2">
         <p className="text-pink-600 text-base font-bold">{`AED ${discountedPrice.toFixed(2)}`}</p>
         <p className="text-sm line-through">{`AED ${rate.toFixed(2)}`}</p>

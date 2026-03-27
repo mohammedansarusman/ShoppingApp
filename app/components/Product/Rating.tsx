@@ -5,7 +5,7 @@ export const Rating = ({ rating }: { rating: number }) => {
   const hasHalfStar = rating % 1 >= 0.25 ? true : false;
   const emptystar = 5 - fullStar - (hasHalfStar ? 1 : 0);
   return (
-    <div className="flex justify-start items-center pl-2">
+    <div className="flex justify-start items-center">
       {[...Array(fullStar)].map((_, index) => (
         <Star key={`fullstar-${index}`}className="fill-pink-500 stroke-0" size={15} />
       ))}

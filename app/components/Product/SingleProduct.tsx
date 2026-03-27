@@ -3,11 +3,13 @@ import { useProductDetails } from "@/app/hooks/useProductDetails";
 import { SingleProductImages } from "./SingleProductImages";
 import { ProductDescription } from "./ProductDescription";
 import { LoadingSingleproduct } from "./LoadingSingleproduct";
-import { ProductCardProps } from "@/app/utils/types";
 import { ProductType } from "@/app/utils/types";
 import { CartItem } from "@/app/utils/types";
 import { useAppDispatch } from "@/app/store/hook";
 import { addItem } from "@/app/store/cartSlice";
+import { addQuantity } from "@/app/store/cartSlice";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner"
 
 
 type ProductIdType = {
@@ -16,6 +18,7 @@ type ProductIdType = {
 
 export const SingleProduct = ({ productId }: ProductIdType) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { data, error, isLoading } = useProductDetails(productId);
   if(data){
     const product = data;
@@ -34,12 +37,17 @@ export const SingleProduct = ({ productId }: ProductIdType) => {
       // store only last 5 items
       localStorage.setItem(
         "recentlyViewed",
-        JSON.stringify(updatedItems.slice(0, 5)),
+        JSON.stringify(updatedItems.slice(0, 10)),
       );
   }
-  const handleProductClick = (item: CartItem): void =>{
-    console.log("item in cart=>",item);
-    dispatch(addItem({...item}))
+  const handleProductClick = (item: CartItem) =>{
+    dispatch(addItem({...item}))   // add items in to cart ( state )
+    dispatch(addQuantity(1));  // update cart items quantity ( state)
+    toast.success(`${item.title} added to basket`,{position: "top-right", className: "!bg-pink-500 !text-white"})
+    const timer = setTimeout(()=>{
+      router.push("/basket")
+    },2000)
+    return ()=> clearTimeout(timer)
   }
   
   return (

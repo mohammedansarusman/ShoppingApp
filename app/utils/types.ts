@@ -1,3 +1,5 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+
 export type ProductType = {
   id: number;
   title: string;
@@ -22,6 +24,7 @@ export type CartItem = {
   id? : number;
   price: number;
   discountPercentage: number;
-  thumbnail?:string;
-  rating?: number;  
+  thumbnail:string;
+  rating: number;  
 }
+
