@@ -28,3 +28,7 @@ export type CartItem = {
   rating: number;  
 }
 
+export type CartItemWithUnits = CartItem & {
+  units: number;
+}
+

@@ -1,30 +1,27 @@
 'use client'
 import { CartItem } from "@/app/utils/types";
+import { CartItemWithUnits } from "@/app/utils/types";
 import { Rating } from "../Product/Rating";
 import Image from "next/image";
-import { useState } from "react";
 import { addQuantity, minusQuantity } from "@/app/store/cartSlice";
 import { useAppDispatch } from "@/app/store/hook";
 
 
-export const BasketDetails = ({ items }: { items: CartItem }) => {
-  const [quantity, setQuantity] = useState(1);
+export const BasketDetails = ({ items }: { items: CartItemWithUnits }) => {
   const discount = items.discountPercentage;
   const rate = items.price;
   const discountedPrice = rate - (rate * (discount / 100));
-  const total = discountedPrice * quantity;
+  const total = discountedPrice * items.units;
   const dispatch = useAppDispatch();
 
 
-  const handlePlus = () =>{
-    setQuantity(prev=>prev+1);
-    dispatch(addQuantity(1));
+  const handlePlus = (): void =>{
+    dispatch(addQuantity(items))
 
   }
-  const handleMinus = () =>{
-    if(quantity===1) return
-    setQuantity(quantity-1)
-    dispatch(minusQuantity(1));
+  const handleMinus = (): void =>{
+    items.units>1 && dispatch(minusQuantity(items))
+    
   }
   if (!items) return null;
   return (
@@ -45,8 +42,8 @@ export const BasketDetails = ({ items }: { items: CartItem }) => {
       <div className="w-2/8 h-30 flex flex-col justify-between items-end pr-2 text-sm font-semibold pt-2" >
         <h1>{`AED ${total.toFixed(2)}`}</h1>
         <div className="flex border border-gray-200 px-4 py-2 gap-2">
-          <button className="cursor-pointer" onClick={handleMinus}>-</button>
-          <p className="px-2">{quantity}</p>
+          <button className="cursor-pointer" onClick={()=>handleMinus()}>-</button>
+          <p className="px-2">{items.units}</p>
           <button className="cursor-pointer" onClick={handlePlus}>+</button>
         </div>
       </div>

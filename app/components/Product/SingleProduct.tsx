@@ -41,7 +41,7 @@ export const SingleProduct = ({ productId }: ProductIdType) => {
       );
   }
   const handleProductClick = (item: CartItem) =>{
-    dispatch(addItem({...item}))   // add items in to cart ( state )
+    dispatch(addItem({...item, units:1}))   // add items in to cart ( state )
     dispatch(addQuantity(1));  // update cart items quantity ( state)
     toast.success(`${item.title} added to basket`,{position: "top-right", className: "!bg-pink-500 !text-white"})
     const timer = setTimeout(()=>{
