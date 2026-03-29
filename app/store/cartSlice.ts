@@ -3,11 +3,9 @@ import { CartItemWithUnits } from "../utils/types"; // type CartItem  + units
 
 type CartStateProp = {
   basket: CartItemWithUnits[];
-  // cartQuantity: number;
 };
 const initialState: CartStateProp = {
   basket: [],
-  // cartQuantity: 0,
 };
 
 const cartSlice = createSlice({
@@ -25,7 +23,6 @@ const cartSlice = createSlice({
       }
     },
     addQuantity: (state, action: PayloadAction<CartItemWithUnits>) => {
-      // state.cartQuantity = state.cartQuantity+action.payload;
       const existing = state.basket.find(
         (item) => item.id === action.payload.id,
       );
@@ -40,9 +37,15 @@ const cartSlice = createSlice({
       if (existing) {
         existing.units -= 1;
       }
+      
+    },
+    deleteItem: (state, action: PayloadAction<CartItemWithUnits>) => {
+      state.basket= state.basket.filter(
+        (item) => item.id !== action.payload.id,
+      );
     },
   },
 });
 
 export default cartSlice.reducer;
-export const { addItem, addQuantity, minusQuantity } = cartSlice.actions;
+export const { addItem, addQuantity, minusQuantity, deleteItem } = cartSlice.actions;

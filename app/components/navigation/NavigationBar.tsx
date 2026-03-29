@@ -1,13 +1,16 @@
 // parent component is page.tsx
-'use client'
+"use client";
 import { Heart, ShoppingCart, UserCircle } from "lucide-react";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MobileNavigationBar } from "./MobileNavigationBar";
 import { NavBarIcon } from "./NavBarIcon";
+import { useAppSelector } from "@/app/store/hook";
 
 export const NavigationBar = () => {
+  const basket = useAppSelector(store=>store.cart.basket);
+  const totalUnits = basket.reduce((acc,item)=>acc+item.units,0);
   return (
     <div
       className="w-full h-20 pt-5 flex items-center justify-between px-4 text-gray-600 
@@ -57,14 +60,18 @@ export const NavigationBar = () => {
           className="flex flex-col items-center "
         />
         {/* Basket/Cart Icon */}
-        <Link href={"/basket"}>
-          <NavBarIcon
-          iconName="Cart"
-          iconImage={ShoppingCart}
-          className="flex flex-col items-center "
-        />
-        </Link>
-        
+        <div className="relative">
+          <Link href={"/basket"}>
+            <NavBarIcon
+              iconName="Cart"
+              iconImage={ShoppingCart}
+              className="flex flex-col items-center "
+            />
+            <div className="w-5 h-5 bg-pink-500 text-white absolute -top-3 -right-1 rounded-full flex justify-center items-center text-xs">
+              <p>{totalUnits}</p>
+            </div>
+          </Link>
+        </div>
       </aside>
     </div>
   );

@@ -1,10 +1,10 @@
 'use client'
-import { CartItem } from "@/app/utils/types";
 import { CartItemWithUnits } from "@/app/utils/types";
 import { Rating } from "../Product/Rating";
 import Image from "next/image";
-import { addQuantity, minusQuantity } from "@/app/store/cartSlice";
+import { addQuantity, minusQuantity, deleteItem } from "@/app/store/cartSlice";
 import { useAppDispatch } from "@/app/store/hook";
+import { Trash2 } from "lucide-react";
 
 
 export const BasketDetails = ({ items }: { items: CartItemWithUnits }) => {
@@ -23,15 +23,23 @@ export const BasketDetails = ({ items }: { items: CartItemWithUnits }) => {
     items.units>1 && dispatch(minusQuantity(items))
     
   }
+  const handleDelete = () =>{
+    dispatch(deleteItem(items))
+  }
   if (!items) return null;
   return (
-    <div className="max-w-120 md:max-w-100 lg:max-w-120 xl:max-w-140 h-30 flex mt-3 border-t border-gray-200 text-gray-600">
-      {/* image */}
-      <div className="w-2/8">
+    <div className="max-w-120 md:max-w-110 lg:max-w-120 xl:max-w-140  flex mt-3 border-t border-gray-200 text-gray-600">
+      {/* image and quantity buttons */}
+      <div className="w-2/8 h-full flex flex-col items-center">
         <Image src={items.thumbnail} alt="pic" width={800} height={1000} className="w-full h-full object-contain" />
+        <div className="flex justify-between items-center border border-gray-200 w-20 h-10 text-sm">
+          <button className="cursor-pointer w-2/8" onClick={()=>handleMinus()}>-</button>
+          <p className="px-2">{items.units}</p>
+          <button className="cursor-pointer w-2/8" onClick={handlePlus}>+</button>
+        </div>
       </div>
       {/* product description */}
-      <div className="w-5/8 h-30 pl-2 pt-2">
+      <div className="w-4/8 h-full pl-2 pt-2">
         <h1 className="font-light text-sm">
           {items.brand ? items.brand : items.title}
         </h1>
@@ -39,13 +47,9 @@ export const BasketDetails = ({ items }: { items: CartItemWithUnits }) => {
         <Rating rating={items.rating} />
       </div>
       {/* rate and delete icon */}
-      <div className="w-2/8 h-30 flex flex-col justify-between items-end pr-2 text-sm font-semibold pt-2" >
+      <div className="w-2/8 flex flex-col justify-between items-end pr-2 text-sm font-semibold py-2" >
         <h1>{`AED ${total.toFixed(2)}`}</h1>
-        <div className="flex border border-gray-200 px-4 py-2 gap-2">
-          <button className="cursor-pointer" onClick={()=>handleMinus()}>-</button>
-          <p className="px-2">{items.units}</p>
-          <button className="cursor-pointer" onClick={handlePlus}>+</button>
-        </div>
+        <Trash2 onClick={handleDelete} className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-300" size={20}/>
       </div>
     </div>
   );
