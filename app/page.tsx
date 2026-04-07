@@ -14,8 +14,6 @@ export default function Home() {
       <RecentlyViewed />
       {/* shop by category */}
       {/* limited stocks */}
-
-
     </div>
   );
 }

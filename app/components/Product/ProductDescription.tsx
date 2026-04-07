@@ -18,7 +18,6 @@ export const ProductDescription = ({ description }: DetailsProps) => {
   const rate = description?.price;
   const discountedPrice = rate - rate * (discount / 100);
   const rating = description?.rating;
-
   return (
     <div className="w-full">
       <div className="px-2 py-2 flex flex-col gap-2">

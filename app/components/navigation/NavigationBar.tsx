@@ -1,16 +1,19 @@
 // parent component is page.tsx
-"use client";
-import { Heart, ShoppingCart, UserCircle } from "lucide-react";
+// "use client";
+import { Heart, ShoppingCart, User2, UserCircle } from "lucide-react";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MobileNavigationBar } from "./MobileNavigationBar";
 import { NavBarIcon } from "./NavBarIcon";
-import { useAppSelector } from "@/app/store/hook";
+import { getSession } from "@/app/_lib/session";
+// import { useAppSelector } from "@/app/store/hook";
 
-export const NavigationBar = () => {
-  const basket = useAppSelector(store=>store.cart.basket);
-  const totalUnits = basket.reduce((acc,item)=>acc+item.units,0);
+export const NavigationBar = async() => {
+  const session = await getSession();
+  
+  // const basket = useAppSelector((store) => store.cart.basket);
+  // const totalUnits = basket.reduce((acc, item) => acc + item.units, 0);
   return (
     <div
       className="w-full h-20 pt-5 flex items-center justify-between px-4 text-gray-600 
@@ -47,12 +50,7 @@ export const NavigationBar = () => {
             className="flex flex-col items-center "
           />
         </Link>
-        {/* User */}
-        <NavBarIcon
-          iconName="Account"
-          iconImage={UserCircle}
-          className="flex flex-col items-center "
-        />
+
         {/* Saved */}
         <NavBarIcon
           iconName="Saved"
@@ -68,10 +66,29 @@ export const NavigationBar = () => {
               className="flex flex-col items-center "
             />
             <div className="w-5 h-5 bg-pink-500 text-white absolute -top-3 -right-1 rounded-full flex justify-center items-center text-xs">
-              <p>{totalUnits}</p>
+              {/* <p>{totalUnits}</p> */}
             </div>
           </Link>
         </div>
+        {/* User */}
+        {!session && (
+          <Link href={"/login"}>
+            <NavBarIcon
+              iconName="Account"
+              iconImage={UserCircle}
+              className="flex flex-col items-center "
+            />
+          </Link>
+        )}
+        {session && (
+          <Link href={"/account"}>
+            <NavBarIcon
+              iconName={session.name}
+              iconImage={User2}
+              className="flex flex-col items-center "
+            />
+          </Link>
+        )}
       </aside>
     </div>
   );

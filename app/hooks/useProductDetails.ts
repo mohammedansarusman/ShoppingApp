@@ -7,7 +7,6 @@ import { ProductType } from "../utils/types";
 export const useProductDetails = (productId: string): any => {
   const fetchSingleProduct = async (productId: string) => {
     const response = await axios.get(`${URL}/${productId}`);
-    console.log("response = >", response.data);
     return response.data;
   };
 
