@@ -1,5 +1,5 @@
 // parent component -  the main page.tsx
-import { URL } from "@/app/utils/constants";
+import { ROUTE_TOP_PICKS, URL } from "@/app/utils/constants";
 import { ProductCard } from "./ProductCard";
 import Link from "next/link";
 import { TOP_PICKS_CRITERIA, TOP_PICKS_LIMIT, TOP_PICKS_SORT, TOP_PICKS_REVALIDATE_MINUTES } from "@/app/utils/constants";
@@ -20,7 +20,7 @@ export const TopPicks = async () => {
         <h2 className="text-xl text-gray-600 font-semibold">
           Products
         </h2>
-        <Link href={"/top-picks"}>
+        <Link href={ROUTE_TOP_PICKS}>
           <h2 className=" text-gray-600 text-sm underline cursor-pointer">
           View All
         </h2>
@@ -28,7 +28,6 @@ export const TopPicks = async () => {
         
       </div>
       <ProductCard products = {products}/>
-      {/* products is array object  = [{id:1,name:'a'}] */}
     </div>
   );
 };

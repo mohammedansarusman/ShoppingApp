@@ -28,6 +28,7 @@ export const CarouselItems = () => {
               width={1200}
               height={600}
               className="w-full h-full object-fill rounded-lg"
+              loading="eager"
             />
           </CarouselItem>
         ))}
